@@ -1,36 +1,29 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import puppeteer from 'puppeteer';
-const { JSDOM } = require('jsdom');
 import { Pool } from 'pg';
-const fs = require('fs');
-const path = require('path');
+import cors from 'cors';
+import fs from 'fs';
+import puppeteer from 'puppeteer'; // Import puppeteer
+import { JSDOM } from 'jsdom'; // Import JSDOM
 
 const app = express();
-const port = 3000;
+const port = 3001;
 
+app.use(cors());
 app.use(bodyParser.json());
 
 const pool = new Pool({
     connectionString: "postgres://MelatoninJr:SYuMcRJZ0GW9@ep-noisy-wind-52667273.us-east-2.aws.neon.tech/neondb?sslmode=require",
 });
 
-const schemaFilePath = path.join(__dirname, 'schema/create_schema.sql'); // Correct the path as needed
+const schemaName = "public";
 
-// Define an interface for the data you want to store
-interface ListingData {
-    title: string;
-    // Add other properties as needed
-}
-
-const schemaName = "public"; // Replace with the actual schema name
-
-// Define the createSchema function
 async function createSchema() {
     try {
         const client = await pool.connect();
 
         // Read and execute the SQL schema file
+        const schemaFilePath = 'schema/create_schema.sql'; // Provide the correct path
         const schemaSQL = fs.readFileSync(schemaFilePath, 'utf-8');
         await client.query(schemaSQL);
 
@@ -52,7 +45,7 @@ async function clearDataInDatabase() {
     }
 }
 
-// Define the insertDataIntoDatabase function
+// Define the insertDataIntoDatabase function with explicit parameter types
 async function insertDataIntoDatabase(pageNumber: number, listingName: string, imageUrl: string) {
     try {
         const client = await pool.connect();
@@ -70,8 +63,12 @@ async function insertDataIntoDatabase(pageNumber: number, listingName: string, i
 }
 
 // Define the scrapeSreality function before calling it
-async function scrapeSreality(pageNumber: number) {
+// Define the scrapeSreality function with a return value
+// Define the scrapeSreality function with a return value
+async function scrapeSreality(pageNumber: number): Promise<Array<{ title: string; imageSrc: string }>|null> {
     try {
+        console.log(`Scraping page ${pageNumber}...`);
+
         await clearDataInDatabase(); // Clear existing data
 
         const browser = await puppeteer.launch();
@@ -82,9 +79,11 @@ async function scrapeSreality(pageNumber: number) {
         const pageHTML = await page.content();
         const { document } = new JSDOM(pageHTML).window;
 
+        const scrapedData: Array<{ title: string; imageSrc: string }> = []; // Initialize an array to collect the scraped data
+
         const propertyListings = document.querySelectorAll('.property');
 
-        propertyListings.forEach(async (listing: Element, index: number) => {
+        propertyListings.forEach((listing: Element, index: number) => {
             const title = listing.querySelector('.name')?.textContent;
 
             if (title) {
@@ -95,33 +94,62 @@ async function scrapeSreality(pageNumber: number) {
                 const firstImageSrc = firstImageLink?.querySelector('img')?.getAttribute('src');
                 if (firstImageSrc) {
                     console.log(`Image: ${firstImageSrc}`);
-                    // Insert data into the database
-                    insertDataIntoDatabase(pageNumber, title, firstImageSrc);
+                    // Collect the data in an object and add it to the array
+                    scrapedData.push({ title, imageSrc: firstImageSrc });
                 }
             }
         });
 
         await browser.close();
+
+        // Return the scraped data array
+        return scrapedData;
     } catch (error) {
         console.error('An error occurred:', error);
+        return null; // Return null to indicate a failure
     }
 }
+
 
 // The rest of your code remains the same
 
 // ...
 
+let databaseCleared = false; // Flag to track whether the database has been cleared
+
+// ...
+
 app.get('/api/scrapeSreality/:pageNumber', async (req, res) => {
     try {
-        const pageNumber = parseInt(req.params.pageNumber) || 1;
-        await scrapeSreality(pageNumber);
+        const pageNumber = parseInt(req.params.pageNumber) || 1; // Get the page number from the URL parameter
+        const maxPageNumber = 25; // Define the maximum page number (adjust as needed)
 
-        res.status(200).json({ message: 'Scraping complete' });
+        if (pageNumber >= 1 && pageNumber <= maxPageNumber) {
+            // Wait for the scraping to finish using async/await
+            const scrapedData = await scrapeSreality(pageNumber);
+
+            if (Array.isArray(scrapedData)) { // Assert that scrapedData is an array
+                res.status(200).json({ data: scrapedData, total_items: scrapedData.length });
+            } else {
+                res.status(500).json({ error: 'Scraping failed' });
+            }
+        } else {
+            res.status(400).json({ error: 'Invalid page number' });
+        }
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Error during scraping' });
     }
 });
+
+
+
+
+  
+
+  
+  
+  
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
