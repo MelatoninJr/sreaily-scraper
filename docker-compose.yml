@@ -15,6 +15,6 @@ services:
       dockerfile: Dockerfile
     image: sreaily_scraper_frontend_image  # Naming the image for clarity
     ports:
-      - "3000:3000"
+      - "8080:8080"
     depends_on:
       - sreaily-scraper-backend
