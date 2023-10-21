@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  sreaily-scraper-backend:
+    build:
+      context: ./server  # Path to your backend folder
+      dockerfile: Dockerfile
+    image: sreaily_scraper_backend_image  # Naming the image for clarity
+    ports:
+      - "3001:3001"
+
+  sreaily-scraper-frontend:
+    build:
+      context: ./client  # Path to your frontend folder
+      dockerfile: Dockerfile
+    image: sreaily_scraper_frontend_image  # Naming the image for clarity
+    ports:
+      - "3000:3000"
+    depends_on:
+      - sreaily-scraper-backend

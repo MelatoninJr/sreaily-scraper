@@ -5,9 +5,11 @@ import cors from 'cors';
 import fs from 'fs';
 import puppeteer from 'puppeteer'; // Import puppeteer
 import { JSDOM } from 'jsdom'; // Import JSDOM
+import dotenv from 'dotenv';
 
 const app = express();
 const port = 3001;
+dotenv.config();
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -71,7 +73,11 @@ async function scrapeSreality(pageNumber: number): Promise<Array<{ title: string
 
         await clearDataInDatabase(); // Clear existing data
 
-        const browser = await puppeteer.launch();
+        const browser = await puppeteer.launch({
+            headless: true,
+            args: ['--no-sandbox', '--disable-setuid-sandbox']
+        });
+               
         const page = await browser.newPage();
 
         const url = `https://www.sreality.cz/en/search/for-sale/apartments?page=${pageNumber}#z=7`;
