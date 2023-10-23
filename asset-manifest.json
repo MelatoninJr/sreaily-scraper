@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/sreailyscraper/static/css/main.ecc5de1f.css",
-    "main.js": "/sreailyscraper/static/js/main.faa229ef.js",
-    "static/media/dillonpfp2.jpeg": "/sreailyscraper/static/media/dillonpfp2.66ff2d86beb3043fa9b8.jpeg",
-    "index.html": "/sreailyscraper/index.html",
-    "main.ecc5de1f.css.map": "/sreailyscraper/static/css/main.ecc5de1f.css.map",
-    "main.faa229ef.js.map": "/sreailyscraper/static/js/main.faa229ef.js.map"
+    "main.css": "/MelatoninJr/sreaily-scraper/static/css/main.ecc5de1f.css",
+    "main.js": "/MelatoninJr/sreaily-scraper/static/js/main.14fbd4c9.js",
+    "static/media/dillonpfp2.jpeg": "/MelatoninJr/sreaily-scraper/static/media/dillonpfp2.66ff2d86beb3043fa9b8.jpeg",
+    "index.html": "/MelatoninJr/sreaily-scraper/index.html",
+    "main.ecc5de1f.css.map": "/MelatoninJr/sreaily-scraper/static/css/main.ecc5de1f.css.map",
+    "main.14fbd4c9.js.map": "/MelatoninJr/sreaily-scraper/static/js/main.14fbd4c9.js.map"
   },
   "entrypoints": [
     "static/css/main.ecc5de1f.css",
-    "static/js/main.faa229ef.js"
+    "static/js/main.14fbd4c9.js"
   ]
 }
