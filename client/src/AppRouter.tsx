@@ -4,7 +4,7 @@ import App from "./App";
 
 const AppRouter: React.FC = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename='/api/scrapeSreality/1'>
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/api/scrapeSreality/:pageNumber" element={<App />} />
