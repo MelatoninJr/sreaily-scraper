@@ -44,7 +44,7 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://github.com/MelatoninJr/sreaily-scraper",
+  "homepage": "https://melatoninjr.github.io/sreaily-scraper",
   "devDependencies": {
     "gh-pages": "^6.0.0"
   }
