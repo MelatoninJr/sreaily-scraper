@@ -28,7 +28,7 @@ const App: React.FC = () => {
       try {
         setLoading(true);
         
-        const response = await fetch(`http://localhost:3001/api/scrapeSreality/${currentPage}`, { signal: abortController.signal });
+        const response = await fetch(`sreaily-scraper-production.up.railway.app/${currentPage}`, { signal: abortController.signal });
         const result = await response.json();
         
         setData(result.data);
