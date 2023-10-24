@@ -12,7 +12,7 @@ const port = 3001;
 dotenv.config();
 
 const corsOptions: cors.CorsOptions = {
-    origin: 'https://melatoninjr.github.io', // Replace with the origin of your frontend
+    origin: 'https://melatoninjr.github.io/sreaily-scraper', // Replace with the origin of your frontend
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     preflightContinue: false,
   };
