@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/MelatoninJr/sreaily-scraper/static/css/main.ecc5de1f.css",
-    "main.js": "/MelatoninJr/sreaily-scraper/static/js/main.48ed14a9.js",
-    "static/media/dillonpfp2.jpeg": "/MelatoninJr/sreaily-scraper/static/media/dillonpfp2.66ff2d86beb3043fa9b8.jpeg",
-    "index.html": "/MelatoninJr/sreaily-scraper/index.html",
-    "main.ecc5de1f.css.map": "/MelatoninJr/sreaily-scraper/static/css/main.ecc5de1f.css.map",
-    "main.48ed14a9.js.map": "/MelatoninJr/sreaily-scraper/static/js/main.48ed14a9.js.map"
+    "main.css": "/sreaily-scraper/static/css/main.ecc5de1f.css",
+    "main.js": "/sreaily-scraper/static/js/main.c3e793ed.js",
+    "static/media/dillonpfp2.jpeg": "/sreaily-scraper/static/media/dillonpfp2.66ff2d86beb3043fa9b8.jpeg",
+    "index.html": "/sreaily-scraper/index.html",
+    "main.ecc5de1f.css.map": "/sreaily-scraper/static/css/main.ecc5de1f.css.map",
+    "main.c3e793ed.js.map": "/sreaily-scraper/static/js/main.c3e793ed.js.map"
   },
   "entrypoints": [
     "static/css/main.ecc5de1f.css",
-    "static/js/main.48ed14a9.js"
+    "static/js/main.c3e793ed.js"
   ]
 }
