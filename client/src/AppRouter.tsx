@@ -1,16 +1,17 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import App from "./App";
 
 const AppRouter: React.FC = () => {
   return (
-    <BrowserRouter basename="/">
+    <Router basename="/">
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/api/scrapeSreality/:pageNumber" element={<App />} />
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 };
+
 
 export default AppRouter;
