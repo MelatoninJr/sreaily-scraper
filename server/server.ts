@@ -11,7 +11,14 @@ const app = express();
 const port = 3001;
 dotenv.config();
 
-app.use(cors());
+const corsOptions: cors.CorsOptions = {
+    origin: 'https://melatoninjr.github.io', // Replace with the origin of your frontend
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    preflightContinue: false,
+  };
+  
+  // Use the CORS middleware with your Express app
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 const pool = new Pool({

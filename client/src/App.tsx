@@ -5,6 +5,7 @@ import Footer from './components/footer';
 import './App.css';
 import { useParams, useNavigate } from "react-router-dom";
 
+
 interface DataItem {
   title: string;
   imageSrc: string;
