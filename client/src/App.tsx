@@ -31,6 +31,7 @@ const App: React.FC = () => {
         
         const response = await fetch(`https://sreaily-scraper-production.up.railway.app/api/scrapeSreality/${currentPage}`, {
           signal: abortController.signal,
+          mode: 'no-cors'
       });        
         const result = await response.json();
         
