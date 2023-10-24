@@ -29,7 +29,10 @@ const App: React.FC = () => {
       try {
         setLoading(true);
         
-        const response = await fetch(`https://sreaily-scraper-production.up.railway.app/api/scrapeSreality/${currentPage}`, { signal: abortController.signal });
+        const response = await fetch(`https://sreaily-scraper-production.up.railway.app/api/scrapeSreality/${currentPage}`, {
+            signal: abortController.signal,
+            mode: 'no-cors', // Add this line to set the mode to 'no-cors'
+        });        
         const result = await response.json();
         
         setData(result.data);
