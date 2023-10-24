@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/sreaily-scraper/static/css/main.ecc5de1f.css",
-    "main.js": "/sreaily-scraper/static/js/main.c3e793ed.js",
+    "main.js": "/sreaily-scraper/static/js/main.801ea2f7.js",
     "static/media/dillonpfp2.jpeg": "/sreaily-scraper/static/media/dillonpfp2.66ff2d86beb3043fa9b8.jpeg",
     "index.html": "/sreaily-scraper/index.html",
     "main.ecc5de1f.css.map": "/sreaily-scraper/static/css/main.ecc5de1f.css.map",
-    "main.c3e793ed.js.map": "/sreaily-scraper/static/js/main.c3e793ed.js.map"
+    "main.801ea2f7.js.map": "/sreaily-scraper/static/js/main.801ea2f7.js.map"
   },
   "entrypoints": [
     "static/css/main.ecc5de1f.css",
-    "static/js/main.c3e793ed.js"
+    "static/js/main.801ea2f7.js"
   ]
 }
